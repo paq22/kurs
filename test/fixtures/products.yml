@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  short_description: MyText
+  full_description: MyText
+  list_id_images: 1
+  base_price: 1.5
+  current_price: 1.5
+  quantity_in_stock: 1
+  article: 1
+  minimum_quantity: 1
+
+two:
+  title: MyString
+  short_description: MyText
+  full_description: MyText
+  list_id_images: 1
+  base_price: 1.5
+  current_price: 1.5
+  quantity_in_stock: 1
+  article: 1
+  minimum_quantity: 1

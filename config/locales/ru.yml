@@ -1,0 +1,151 @@
+ru:
+  app:
+    name: Очумелые ручки
+    company:
+      short_name: МПУ
+      department: Кафедра
+  helpers:
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+    sure: Действительно удалить?
+    back: Назад 
+    edit: Редактировать 
+    show: Показать
+  buttons:
+    edit: Редактировать
+    destroy: Удалить
+    show: Показать
+    confirm:
+      user: Действительно удалить пользователя?
+      role: Действительно удалить роль?
+      client: Действительно удалить клиента?
+      list: Действительно удалить список?
+      order: Действительно удалить заказ?
+      product: Действительно удалить товар?
+    new: 
+      user: Новый пользователь
+      role: Новая роль
+      client: Новый клиент
+      list: Новый список
+      order: Новый заказ
+      product: Новый товар
+  headers:
+    users:
+      index: Список пользователей
+      new-button: Новый пользователь 
+      edit: Редактирование пользователя
+      new: Создание пользователя
+      #~ 111
+    products:
+      index: Список товаров
+      new-button: Новый товар
+      edit: Редактирование товара
+      new: Создание товара
+      show: Информация о выбранном товаре
+    clients:
+      index: Список клиентов
+      new-button: Новый клиент
+      edit: Редактирование клиента
+      new: Создание клиента
+      show: Информация о выбранном клиенте
+    orders:
+      index: Список заказов
+      new-button: Новый заказ
+      edit: Редактирование заказа
+      new: Создание заказа
+      show: Информация о выбранном заказе
+    lists:
+      index: Списки 
+      new-button: Новый список
+      edit: Редактирование списка
+      new: Создание списка
+      show: Информация о выбранном списке
+      #~ 111
+    roles:
+      index: Список возможных ролей пользователей
+      new-button: Новая роль
+      edit: Редактирование роли
+      new: Создание роли
+  views:
+    pagination:
+      first: ⇤
+      last: ⇥
+      previous: ←
+      next: →
+      truncate: …
+  activerecord:
+    models:
+      user: Пользователь
+      client: Клиенты
+      list: Списоки
+      order: Заказы
+      product: Товары
+    attributes:
+      user:
+        email: Пользовательское имя/электронная почта
+        birthday: Дата рождения
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        reset_password_email_sent_at: Дата отправления письма для смены пароля
+        activation_state: Статус активации
+        activation_token_expires_at: Дата прекращения действия токена активации
+        last_login_at: Время последнего входа в систему
+        role_users: Роли
+      role: 
+        name: Обозначение
+        info: Краткое название
+        full_info: Описание
+      # nested_start
+      role_user: &role_users
+      # nested_finish
+        role: Роль
+        role_id: Роль
+        data: Параметры
+      # nested_start
+      user/role_users:
+        <<: *role_users
+      # nested_finish 
+      #~ 111
+      product:
+        title: Название
+        short_description: Краткое описание
+        full_description: Полное описание
+        list_id_images: Список идентификаторов изображений
+        base_price: Базовая цена
+        current_price: Текущая цена
+        quantity_in_stock: Количество на складе
+        article: Артикль
+        minimum_quantity: Минимальное количество в 1 заказе
+      client:
+        name: Ф.И.О.
+        phone: Контактный телефон
+        address: Адрес
+        email: Электронная почта
+      order:
+        client: Информация о клиенте
+        order_number: Номер заказа
+        payment_method: Способ оплаты
+        delivery_method: Способ доставки
+        list_products: Список товаров
+        cost_goods: Стоимость товара на момент заказа
+        total_cost: Общая стоимость с доставкой
+        order_date: Дата заказа
+      list: &lists
+        product: Товары
+        order: Заказы
+        product_id: Товары_id
+        order_id: Заказы_id
+        quantity_at_order: Количество товара
+      product/lists:
+        <<: *lists   
+      #~ 111      
+    errors:
+      models:
+        person:
+          attributes:
+            snils:
+              check_sum: имеет неправильную контрольную сумму
+        full_info: Описание
+          

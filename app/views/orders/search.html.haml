@@ -1,0 +1,216 @@
+.page-header
+  %h1 Параметры поиска
+  
+= form_tag search_orders_path(), method: :get do
+  
+  .col-md-6
+    .panel.panel-wave
+      .panel-heading
+        Товар
+      .panel-body
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Product.human_attribute_name(:article))
+              = select_tag "search_product_article", options_for_select(Product.all.map{|p| p.article}, ), include_blank: true, class: 'form-control', value: params["search_product_article"].nil? ? nil : params["search_product_article"]
+          .col-md-6
+            .form-group
+              = label_tag(Product.human_attribute_name(:title))
+              = select_tag "search_product_title", options_for_select(Product.all.map{|p| p.title}, ), include_blank: true, class: 'form-control', value: params["search_product_title"].nil? ? nil : params["search_product_title"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Product.human_attribute_name(:short_description))
+              = text_field_tag "search_product_short_description", nil, class: 'form-control', value: params["search_product_short_description"].nil? ? nil : params["search_product_short_description"]
+          .col-md-6
+            .form-group
+              = label_tag(Product.human_attribute_name(:full_description))
+              = text_field_tag "search_product_full_description", nil, class: 'form-control', value: params["search_product_full_description"].nil? ? nil : params["search_product_full_description"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Product.human_attribute_name(:base_price))
+        .row
+          .col-md-6
+            .form-group
+              = label_tag("С")
+              = text_field_tag "search_product_base_price0", nil, class: 'form-control', value: params["search_product_base_price0"].nil? ? nil : params["search_product_base_price0"]
+          .col-md-6
+            .form-group
+              = label_tag("По")
+              = text_field_tag "search_product_base_price1", nil, class: 'form-control', value: params["search_product_base_price1"].nil? ? nil : params["search_product_base_price1"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Product.human_attribute_name(:current_price))
+        .row
+          .col-md-6
+            .form-group
+              = label_tag("С")
+              = text_field_tag "search_product_current_price0", nil, class: 'form-control', value: params["search_product_current_price0"].nil? ? nil : params["search_product_current_price0"]
+          .col-md-6
+            .form-group
+              = label_tag("По")
+              = text_field_tag "search_product_current_price1", nil, class: 'form-control', value: params["search_product_current_price1"].nil? ? nil : params["search_product_current_price1"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Product.human_attribute_name(:quantity_in_stock))
+        .row
+          .col-md-6
+            .form-group
+              = label_tag("С")
+              = text_field_tag "search_product_quantity_in_stock0", nil, class: 'form-control', value: params["search_product_quantity_in_stock0"].nil? ? nil : params["search_product_quantity_in_stock0"]
+          .col-md-6
+            .form-group
+              = label_tag("По")
+              = text_field_tag "search_product_quantity_in_stock1", nil, class: 'form-control', value: params["search_product_quantity_in_stock1"].nil? ? nil : params["search_product_quantity_in_stock1"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Product.human_attribute_name(:minimum_quantity))
+        .row
+          .col-md-6
+            .form-group
+              = label_tag("С")
+              = text_field_tag "search_product_minimum_quantity0", nil, class: 'form-control', value: params["search_product_minimum_quantity0"].nil? ? nil : params["search_product_minimum_quantity0"]
+          .col-md-6
+            .form-group
+              = label_tag("По")
+              = text_field_tag "search_product_minimum_quantity1", nil, class: 'form-control', value: params["search_product_minimum_quantity1"].nil? ? nil : params["search_product_minimum_quantity1"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(List.human_attribute_name(:quantity_at_order) + " в заказе")
+        .row
+          .col-md-6
+            .form-group
+              = label_tag("С")
+              = text_field_tag "search_list_quantity_at_order0", nil, class: 'form-control', value: params["search_list_quantity_at_order0"].nil? ? nil : params["search_list_quantity_at_order0"]
+          .col-md-6
+            .form-group
+              = label_tag("По")
+              = text_field_tag "search_list_quantity_at_order1", nil, class: 'form-control', value: params["search_list_quantity_at_order1"].nil? ? nil : params["search_list_quantity_at_order1"]
+  .col-md-6
+    .panel.panel-wave
+      .panel-heading
+        Клиент
+      .panel-body
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Client.human_attribute_name(:name))
+              = text_field_tag "search_client_name", nil, class: 'form-control', value: params["search_client_name"].nil? ? nil : params["search_client_name"]
+          .col-md-6
+            .form-group
+              = label_tag(Client.human_attribute_name(:phone))
+              = text_field_tag "search_client_phone", nil, class: 'form-control', value: params["search_client_phone"].nil? ? nil : params["search_client_phone"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Client.human_attribute_name(:address))
+              = text_field_tag "search_client_address", nil, class: 'form-control', value: params["search_client_address"].nil? ? nil : params["search_client_address"]
+          .col-md-6
+            .form-group
+              = label_tag(Client.human_attribute_name(:email))
+              = text_field_tag "search_client_email", nil, class: 'form-control', value: params["search_client_email"].nil? ? nil : params["search_client_email"]
+  .col-md-6          
+    .panel.panel-wave
+      .panel-heading
+        Заказ
+      .panel-body
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Order.human_attribute_name(:order_number))
+              = text_field_tag "search_order_number", nil, class: 'form-control', value: params["search_order_number"].nil? ? "" : params["search_order_number"]
+          .col-md-6
+            .form-group
+              = label_tag(Order.human_attribute_name(:list_products))
+              
+              = text_field_tag "search_order_list_products", nil, class: 'form-control', value: params["search_order_list_products"].nil? ? "" : params["search_order_list_products"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Order.human_attribute_name(:order_date))
+        .row
+          .col-md-6
+            .form-group
+              = label_tag("С")
+              .input-group.date.datepicker
+                = text_field_tag "search_order_date0", nil, class: 'form-control', value: params["search_order_date0"].nil? ? "" : params["search_order_date0"]
+                %span.input-group-addon
+                  %span.glyphicon.glyphicon-calendar
+          .col-md-6
+            .form-group
+              = label_tag("По")
+              .input-group.date.datepicker
+                = text_field_tag "search_order_date1", nil, class: 'form-control', value: params["search_order_date1"].nil? ? "" : params["search_order_date1"]
+                %span.input-group-addon
+                  %span.glyphicon.glyphicon-calendar
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Order.human_attribute_name(:payment_method))
+              = select_tag "search_order_payment_method", options_for_select(['Наличными при получении','Банковской картой','Электронными деньгами','Через терминал оплаты'], ), include_blank: true, class: 'form-control'
+          .col-md-6
+            .form-group
+              = label_tag(Order.human_attribute_name(:delivery_method))
+              = select_tag "search_order_delivery_method", options_for_select(['Самовывоз = бесплатно', 'Курьерская доставка = 250 рублей','Евросеть = 160 рублей','Постамат PickPoint = 150 рублей'], ), include_blank: true, class: 'form-control'
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Order.human_attribute_name(:cost_goods))
+        .row
+          .col-md-6
+            .form-group
+              = label_tag("С")
+              = text_field_tag "search_order_cost_goods0", nil, class: 'form-control', value: params["search_order_cost_goods0"].nil? ? "" : params["search_order_cost_goods0"]
+          .col-md-6
+            .form-group
+              = label_tag("По")
+              = text_field_tag "search_order_cost_goods1", nil, class: 'form-control', value: params["search_order_cost_goods1"].nil? ? "" : params["search_order_cost_goods1"]
+        .row
+          .col-md-6
+            .form-group
+              = label_tag(Order.human_attribute_name(:total_cost))
+        .row
+          .col-md-6
+            .form-group
+              = label_tag("С")
+              = text_field_tag "search_order_total_cost0", nil, class: 'form-control', value: params["search_order_total_cost0"].nil? ? "" : params["search_order_total_cost0"]
+          .col-md-6
+            .form-group
+              = label_tag("По")
+              = text_field_tag "search_order_total_cost1", nil, class: 'form-control', value: params["search_order_total_cost1"].nil? ? "" : params["search_order_total_cost1"]
+    
+         
+           
+  = submit_tag "Искать", class: 'btn btn-primary'
+
+.page-header
+  %h1 Результат поиска
+
+%table.table.table-hover.table-striped
+  %thead
+    %tr
+      %th= Order.human_attribute_name(:order_number)
+      %th= Order.human_attribute_name(:order_date)
+      %th= Client.human_attribute_name(:name)
+      %th Количество товарных наименований
+      %th= Order.human_attribute_name(:total_cost)
+      %th
+      
+  %tbody
+    - @result.each do |order|
+      %tr
+        %td.center= order.order_number
+        %td.center= order.order_date
+        %td.center= order.client.name
+        %td.center= order.lists.product.size
+        %td.center= order.total_cost
+        %td.right
+          = link_to order, class: 'btn btn-warning' do
+            = fa_icon :eye
+            = t('buttons.show')
+

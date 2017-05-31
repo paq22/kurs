@@ -1,0 +1,8 @@
+- if is_admin?
+  %h1 New role
+
+  = render 'form'
+
+  = link_to 'Back', roles_path
+- else
+  %h1{style: "color: red"} Доступ запрещен

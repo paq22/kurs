@@ -1,0 +1,58 @@
+=breadcrumb_tag do
+  %li.active
+    Таблицы
+  %li
+    = t('activerecord.models.product')
+
+.page-header
+  %h1= t('headers.products.index')
+
+
+  %table.table.table-hover.table-striped
+    - if is_admin?
+      - @products.each do |product|
+        %caption
+          = link_to new_product_path, class: 'btn btn-success' do
+            = fa_icon :plus
+            = t('buttons.new.product') 
+    %thead
+      %tr
+        
+        %th= Product.human_attribute_name(:title)
+        %th= Product.human_attribute_name(:short_description)
+        %th= Product.human_attribute_name(:current_price)
+        %th= Product.human_attribute_name(:quantity_in_stock)
+        %th= Product.human_attribute_name(:article)
+        %th= Product.human_attribute_name(:minimum_quantity)
+        %th
+        
+        
+    %tbody
+    - @products.each do |product|
+      %tr
+       
+        %td{data: {label: Product.human_attribute_name(:title)} }
+          = image_tag(product.list_id_images, class: 'list_id_images')
+          = product.title
+        %td{data: {label: Product.human_attribute_name(:short_description)} } 
+          = product.short_description
+        %td.center{data: {label: Product.human_attribute_name(:current_price)} }
+          = product.current_price
+        %td.center{data: {label: Product.human_attribute_name(:quantity_in_stock)}}
+          = product.quantity_in_stock
+        %td.center{data: {label: Product.human_attribute_name(:article)}}
+          = product.article
+        %td.center{data: {label: Product.human_attribute_name(:minimum_quantity)}}
+          = product.minimum_quantity
+        %td
+          = link_to product, class: 'btn btn-warning' do
+            = fa_icon :eye
+
+          - if is_admin?
+            = link_to edit_product_path(product), class: 'btn btn-info' do
+              = fa_icon :edit
+
+            = link_to product, :method => :delete, :data => { :confirm => t('buttons.confirm.product') }, class: 'btn btn-danger' do
+              = fa_icon :times
+
+

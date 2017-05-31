@@ -1,0 +1,23 @@
+- if is_admin?
+  =breadcrumb_tag do
+    %li.active
+      = @role.name
+    %li
+      = link_to 'Роли', roles_path
+    %li
+      Администрирование
+
+  %h1= @role.name
+
+  %dl
+    %dt= Role.human_attribute_name(:name)
+    %dd= @role.name
+
+    %dt= Role.human_attribute_name(:info)
+    %dd= @role.info
+
+    %dt= Role.human_attribute_name(:full_info)
+    %dd= @role.full_info
+- else
+  %h1{style: "color: red"} Доступ запрещен
+

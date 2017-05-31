@@ -1,0 +1,32 @@
+=breadcrumb_tag do
+  %li.active
+    Таблицы
+  %li
+    = link_to t('activerecord.models.product'), products_path
+  %li
+    = @product.title
+.page-header
+  %h1= t('headers.products.new')
+
+%dl
+  %dt= Product.human_attribute_name(:title)
+  %dd= @product.title
+  %dt= Product.human_attribute_name(:short_description)
+  %dd= @product.short_description
+  %dt= Product.human_attribute_name(:full_description)
+  %dd= @product.full_description
+  - if @current_role_user.is_admin?
+    %dt= Product.human_attribute_name(:base_price)
+    %dd= @product.base_price
+  %dt= Product.human_attribute_name(:current_price)
+  %dd= @product.current_price
+  %dt= Product.human_attribute_name(:quantity_in_stock)
+  %dd= @product.quantity_in_stock
+  %dt= Product.human_attribute_name(:article)
+  %dd= @product.article
+  %dt= Product.human_attribute_name(:minimum_quantity)
+  %dd= @product.minimum_quantity
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to t('app.helpers.back'), products_path

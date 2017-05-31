@@ -1,0 +1,49 @@
+= form_for @product do |f|
+  = error_messages_for @product
+  .row
+    .col-md-6
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :short_description
+        = f.text_area :short_description, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :full_description
+        = f.text_area :full_description, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :list_id_images
+        = f.text_field :list_id_images, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :base_price
+        = f.text_field :base_price, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :current_price
+        = f.text_field :current_price, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :quantity_in_stock
+        = f.number_field :quantity_in_stock, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :article
+        = f.number_field :article, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :minimum_quantity
+        = f.number_field :minimum_quantity, class: 'form-control'
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

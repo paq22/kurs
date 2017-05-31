@@ -1,0 +1,35 @@
+- if is_admin?
+  .page-header
+    %h1= t('headers.clients.index')
+
+  %table.table.table-hover.table-striped
+
+    %thead
+      %tr
+        %th= Client.human_attribute_name(:name)
+        %th= Client.human_attribute_name(:phone)
+        %th= Client.human_attribute_name(:address)
+        %th= Client.human_attribute_name(:email)
+        %th
+
+    %tbody
+      - @clients.each do |client|
+        %tr
+          %td{data: {label: Client.human_attribute_name(:name)} }
+            = client.name
+          %td{data: {label: Client.human_attribute_name(:phone)} }
+            = client.phone
+          %td{data: {label: Client.human_attribute_name(:address)} }
+            - if client.address == ''
+              = 'не указан'
+            = client.address
+          %td{data: {label: Client.human_attribute_name(:email)} }
+            = client.email
+          %td
+            = link_to client, :method => :delete, 
+            :data => { :confirm => t('buttons.confirm.client') }, 
+            class: 'btn btn-danger' do
+              = fa_icon :times
+              = t('buttons.destroy')
+- else
+  %h1{style: "color: red"} Доступ запрещен

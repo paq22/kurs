@@ -1,0 +1,60 @@
+=breadcrumb_tag do
+  %li.active
+    Таблицы
+  %li
+    = link_to t('activerecord.models.order'), orders_path
+    
+.page-header
+  %h1= t('headers.orders.index')
+
+%table.table.table-hover.table-striped
+  %caption
+    = link_to new_order_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.order')
+  %thead
+    %tr
+      %th= Order.human_attribute_name(:client)
+      %th= Order.human_attribute_name(:order_number)
+      %th= Order.human_attribute_name(:payment_method)
+      %th= Order.human_attribute_name(:delivery_method)
+      %th= Order.human_attribute_name(:list_products)
+      %th= Order.human_attribute_name(:cost_goods)
+      %th= Order.human_attribute_name(:total_cost)
+      %th= Order.human_attribute_name(:order_date)
+      %th
+
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td{data: {label: Order.human_attribute_name(:client)} } 
+          = order.client.name
+        %td{data: {label: Order.human_attribute_name(:order_number)} }
+          = order.order_number
+        %td{data: {label: Order.human_attribute_name(:payment_method)} }
+          = order.payment_method
+        %td{data: {label: Order.human_attribute_name(:delivery_method)} }
+          = order.delivery_method
+        %td{data: {label: Order.human_attribute_name(:list_products)} }
+          = order.list_products
+        %td{data: {label: Order.human_attribute_name(:cost_goods)} }
+          = order.cost_goods
+        %td{data: {label: Order.human_attribute_name(:total_cost)} }
+          = order.total_cost
+        %td{data: {label: Order.human_attribute_name(:order_date)} }
+          = order.order_date
+        %td
+          = link_to order, class: 'btn btn-warning' do
+            = fa_icon :eye
+
+          = link_to edit_order_path(order), class: 'btn btn-info' do
+            = fa_icon :edit
+
+          - if is_admin?
+            = link_to order, :method => :delete, 
+            :data => { :confirm => t('buttons.confirm.order') }, 
+            class: 'btn btn-danger' do
+              = fa_icon :times
+
+
+

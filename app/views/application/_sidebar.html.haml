@@ -1,0 +1,46 @@
+%aside.hidden-print#sidebar-wrapper
+  %ul.sidebar-nav
+    %li
+      = link_to root_path do
+        = image_tag 'logo.png'
+        = t('app.name')
+
+
+    %li
+      = link_to login_path do
+        = @current_user.blank? ? 'Вход не выполнен' :  @current_user.email
+      - if @current_user.blank?
+        = link_to login_path do
+          = fa_icon('sign-in', class: 'menu-icon', text: 'Войти')
+      - else
+        = link_to logout_path do
+          = fa_icon('sign-out', class: 'menu-icon', text: 'Выйти')
+    - side_bar_items(@current_role_user).each do |item|
+
+      %li
+        - if item.has_key?(:children)
+          = link_to('#', class: 'with-subitems') do
+            = fa_icon(item[:icon], class: 'menu-icon')
+            = item[:name]
+            %span.pull-right.carret
+              = fa_icon('angle-down', class: 'menu-icon')              
+          %ul.subitems{class: (item[:children].any?{ |subitem| is_open?(subitem[:controller], subitem[:action]) } ? :subopen : :subclose)}
+            - item[:children].each do |subitem|
+              %li.subitem
+                - if subitem.has_key?(:params)
+                  = link_to(url_for({controller: subitem[:controller], action: subitem[:action]}.merge(subitem[:params])), class: subitem[:class]) do        
+                    = fa_icon(subitem[:icon], class: 'menu-icon')
+                    = subitem[:name]
+                - else
+                  = link_to(url_for(controller: subitem[:controller], action: subitem[:action]), class: subitem[:class]) do        
+                    = fa_icon(subitem[:icon], class: 'menu-icon')
+                    = subitem[:name]
+        - else
+          = link_to(url_for(controller: item[:controller], action: item[:action]), class: item[:class]) do
+            = fa_icon(item[:icon], class: 'menu-icon')
+            = item[:name]
+    %li.footer
+      %div
+        Курсовая работа на основе базового приложения В.Ю. Радыгина. 
+        %div
+          Вариант №5. Парушкина А.

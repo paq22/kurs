@@ -1,0 +1,22 @@
+.col-md-6
+  %div{class: 'panel panel-'+ (i.kind_of?(Integer) ? 'success' : 'info')}
+    .panel-heading
+      Товар
+      = i
+      %span.toright
+        = link_to_remove_product(lf)
+      .clearfix
+    .panel-body
+      .row
+        .col-md-6
+          .form-group
+            = lf.label :product_id
+            = lf.select(:product_id, 
+            options_for_select(product_options, lf.object.product_id), 
+            {}, class: 'form-control')
+            = lf.error_messages_for(:product_id)
+        .col-md-6
+          .form-group
+            = lf.label :quantity_at_order
+            = lf.text_field :quantity_at_order, class: 'form-control'
+            = lf.error_messages_for(:quantity_at_order)

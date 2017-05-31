@@ -1,0 +1,102 @@
+= form_for @order do |f|
+  = error_messages_for @order
+    
+  .panel.panel-wave
+    .panel-heading
+      Клиент
+    .panel-body           
+      = f.fields_for(:client) do |cf|
+        .row
+          .col-md-6
+            .form-group
+            = cf.label :name
+            = cf.text_field :name, class: 'form-control'
+            = cf.error_messages_for(:name)
+        .row
+          .col-md-6
+            .form-group
+              = cf.label :phone
+              = cf.text_field :phone, class: 'form-control'
+              = cf.error_messages_for(:phone)
+        .row
+          .col-md-6
+            .form-group
+              = cf.label :address
+              = cf.text_field :address, class: 'form-control'
+              = cf.error_messages_for(:address)
+        .row
+          .col-md-6
+            .form-group
+              = cf.label :email
+              = cf.text_field :email, class: 'form-control'
+              = cf.error_messages_for(:email)
+  .row
+    .col-md-6
+      .form-group
+        = f.label :order_number
+        = f.label @order.order_number, class: 'form-control'
+        = f.error_messages_for(:order_number)
+  .row
+    .col-md-6
+      .form-group
+        = f.label :order_date
+        = f.label @order.order_date, class: 'form-control'
+        = f.error_messages_for(:order_date)
+  .row
+    .col-md-6
+      .form-group
+        = f.label :payment_method
+        = f.select :payment_method, ['Наличными при получении','Банковской картой','Электронными деньгами','Через терминал оплаты']
+        = f.error_messages_for(:payment_method)
+  .row
+    .col-md-6
+      .form-group
+        = f.label :delivery_method
+        = f.select :delivery_method, ['Курьерская доставка','Самовывоз','Евросеть (пункты выдачи заказов)','Постамат PickPoint']
+        = f.error_messages_for(:delivery_method)
+  %p
+    %i Стоимость доставки представлена ниже
+  %table.table.table-hover.table-striped
+    %thead
+      %tr
+        %th= "Самовывоз"
+        %th= "Курьерская доставка г.Москва"
+        %th= "Евросеть (пункты выдачи заказов)"
+        %th= "Постамат PickPoint"
+    %tbody
+      %tr
+        %td.center= "Бесплатно"
+        %td.center= "250"
+        %td.center= "160"
+        %td.center= "150"
+  .row      
+    .row.bottom20
+      .col-md-12
+        = link_to_add_product(f, f.object)
+    - i = 0
+    = f.fields_for(:lists) do |lf|
+      = lf.hidden_field(:id)
+      = render('orders/one_list_form_for_edit', lf: lf, i: i + 1)
+    -#
+      .row
+        .col-md-6
+          .form-group
+            = f.label :list_products
+            = f.text_area :list_products, class: 'form-control'
+            = f.error_messages_for(:list_products)
+      .row
+        .col-md-6
+          .form-group
+            = f.label :cost_goods
+            = f.text_field :cost_goods, class: 'form-control'
+            = f.error_messages_for(:cost_goods)
+      .row
+        .col-md-6
+          .form-group
+            = f.label :total_cost
+            = f.text_field :total_cost, class: 'form-control'
+            = f.error_messages_for(:total_cost)
+  .row
+    .form-actions
+      = f.submit nil, class: 'btn btn-primary'
+

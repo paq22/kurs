@@ -1,0 +1,18 @@
+=breadcrumb_tag do
+  %li.active
+    Таблицы
+  %li
+    = link_to t('activerecord.models.order'), orders_path
+  %li
+    = link_to(@order.order_number, @order)
+  %li
+    = t('headers.orders.edit')
+
+.page-header
+  %h1= t('headers.orders.edit')
+
+= render 'form_for_edit'
+
+= link_to t('helpers.show'), @order
+\|
+= link_to t('helpers.back'), orders_path
