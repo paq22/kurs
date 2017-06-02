@@ -29,12 +29,12 @@ class Order < ActiveRecord::Base
     
     if !(params['search_order_date1'].nil?) and !(params['search_order_date1'].empty?)
       arr = params['search_order_date1'].split(".").map{|x| x.to_s}
-      result = result.where("order_date <= '?-?-?'", arr[2], arr[1], arr[0])
+      result = result.where("order_date <= ???", arr[2], arr[1], arr[0])
     end
     
     if !(params['search_order_date0'].nil?) and !(params['search_order_date0'].empty?)
       arr = params['search_order_date0'].split(".").map{|x| x.to_s}
-      result = result.where("order_date >= '?-?-?'", arr[2], arr[1], arr[0])
+      result = result.where("order_date >= ???", arr[2], arr[1], arr[0])
     end
     
     if !(params['search_order_total_cost1'].nil?) and !(params['search_order_total_cost1'].empty?)
@@ -54,23 +54,23 @@ class Order < ActiveRecord::Base
     end
     
     if !(params['search_order_list_products'].nil?) and !(params['search_order_list_products'].empty?)
-      result = result.where("list_products ilike '%?%'", params['search_order_list_products'])
+      result = result.where("list_products ilike ?", "%#{params['search_order_list_products']}%")
     end
     
     if !(params['search_client_name'].nil?) and !(params['search_client_name'].empty?)
-      result = result.where("clients.name ilike '%?%'", params['search_client_name'])
+      result = result.where("clients.name ilike ?", "%#{params['search_client_name']}%")
     end
     
     if !(params['search_client_phone'].nil?) and !(params['search_client_phone'].empty?)
-      result = result.where("clients.phone ilike '%?%'", params['search_client_phone'])
+      result = result.where("clients.phone ilike ?", "%#{params['search_client_phone']}%")
     end
     
     if !(params['search_client_address'].nil?) and !(params['search_client_address'].empty?)
-      result = result.where("clients.address ilike '%?%'", params['search_client_address'])
+      result = result.where("clients.address ilike ?", "%#{params['search_client_address']}%")
     end
     
     if !(params['search_client_email'].nil?) and !(params['search_client_email'].empty?)
-      result = result.where("clients.email ilike '%?%'", params['search_client_email'])
+      result = result.where("clients.email ilike ?", "%#{params['search_client_email']}%")
     end
     
     if !(params['search_product_article'].nil?) and !(params['search_product_article'].empty?)
@@ -86,13 +86,13 @@ class Order < ActiveRecord::Base
     end
     
     if !(params['search_product_short_description'].nil?) and !(params['search_product_short_description'].empty?)
-      query = Product.where("short_description ilike '%?%'", params['search_product_short_description']).ids
+      query = Product.where("short_description ilike ?", "%#{params['search_product_short_description']}%").ids
       query << 0 if query.size == 0
       result = result.where("lists.product_id in (?)", query.join(','))
     end
     
     if !(params['search_product_full_description'].nil?) and !(params['search_product_full_description'].empty?)
-      query = Product.where("full_description ilike '%?%'", params['search_product_full_description']).ids
+      query = Product.where("full_description ilike ?", "%#{params['search_product_full_description']}%").ids
       query << 0 if query.size == 0
       result = result.where("lists.product_id in (?)", query.join(','))
     end
